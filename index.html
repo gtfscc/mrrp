@@ -629,11 +629,15 @@
         resultsDiv.innerHTML = `<div class="error-message">Linia nie znaleziona</div>`;
         return;
       }
+      
       let stops = line.stations.map(s => s.name);
+      
       let html = `
         ${renderLineDiagram(lineCode, null, line.stations.map(s=>s.code), false, null, true, false, true, stops, lineCode)}
       `;
+      
       resultsDiv.innerHTML = html;
+      preloadLineAudio(lineCode, stops); 
     }
 
     function setupMapMode() {
