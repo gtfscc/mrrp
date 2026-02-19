@@ -197,6 +197,14 @@
       }
     }
 
+    function preloadLineAudio(lineCode, stationNames) {
+      const sequence = buildAnnouncementSequence(lineCode, stationNames);
+      
+      sequence.forEach(file => {
+        fetchAndDecodeAudio(file).catch(err => console.log('Preload skipped for:', file));
+      });
+    }
+
     function playAnnouncementMp3s(files, onEnd) {
       let idx = 0;
       const ctx = getAudioContext();
