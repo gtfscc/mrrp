@@ -578,20 +578,16 @@
         </div>
       `;
 
+      let contentHtml = '';
+      if (line.icon) {
+        contentHtml = `<img src="/logos/${line.icon}" alt="${line.name}" style="height: 1.4em; display: block;">`;
+      } else {
+        contentHtml = `<span>${line.name}</span>`;
+      }
+
       const lineNameHtml = `
-        <div class="line-name" style="display: flex; align-items: center;">
-            <img src="/logos/${line.name}.svg" 
-                 alt="${line.name}"
-                 style="height: 1.4em;
-                 margin-left: 3px;
-                 margin-top: 5px;
-                 display: none;"
-                 onload="this.style.display='block';
-                 this.nextElementSibling.style.display='none'" 
-                 onerror="this.style.display='none';
-                 this.nextElementSibling.style.display='block'"
-            >
-            <span style="display: block;">${line.name}</span>
+        <div class="line-name" style="display: flex; align-items: center; gap: 8px;">
+            ${contentHtml}
         </div>
       `;
 
