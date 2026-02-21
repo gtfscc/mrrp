@@ -226,7 +226,7 @@
             const specialFiles = getSpecialAnnouncementFiles(status);
             files.push(...specialFiles);
 
-            for (let i = 0; i < stops.length - 1; i++) {
+            for (let i = 0; i < stops.length; i++) {
                 files.push(stopMp3(stops[i]));
                 
                 if (lineData && lineData.stations) {
