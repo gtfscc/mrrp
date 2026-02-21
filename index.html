@@ -1,632 +1,557 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mrrp~</title>
-  <meta property="og:title" content="Miejski i Regionalny Ruch Pociągów" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://mrrp.gtfs.cc/" />
-  <meta property="og:image" content="https://mrrp.gtfs.cc/og.png" />
-  <meta property="og:description" content="Zaplanuj swoją następną podróż dzięki mrrp.gtfs.cc" />
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mrrp~</title>
+    <meta property="og:title" content="Miejski i Regionalny Ruch Pociągów" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mrrp.gtfs.cc/" />
+    <meta property="og:image" content="https://mrrp.gtfs.cc/og.png" />
+    <meta property="og:description" content="Zaplanuj swoją następną podróż dzięki mrrp.gtfs.cc" />
 </head>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;background:#2e2e2e;color:#fbf9f7;line-height:1.5;-webkit-font-smoothing:antialiased;padding:24px}.hind-light{font-family:"Hind",sans-serif;font-weight:300;font-style:normal}.hind-regular{font-family:"Hind",sans-serif;font-weight:400;font-style:normal}.hind-medium{font-family:"Hind",sans-serif;font-weight:500;font-style:normal}.hind-semibold{font-family:"Hind",sans-serif;font-weight:600;font-style:normal}.hind-bold{font-family:"Hind",sans-serif;font-weight:700;font-style:normal}.container{max-width:1200px;margin:0 auto}header{text-align:center;margin-bottom:32px}h1{font-size:30px;font-weight:600;color:#fbf9f7;margin-bottom:8px}.subtitle{font-size:14px;color:#c7c8c9}.mode-selector{display:flex;justify-content:center;gap:12px;margin-bottom:32px;background:#1f1f1f;padding:6px;border-radius:12px;border:1px solid #5e52401f;width:fit-content;margin-left:auto;margin-right:auto}.mode-btn{font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;padding:12px 24px;border:none;background:transparent;color:#c7c8c9;font-size:14px;font-weight:500;cursor:pointer;border-radius:8px;transition:all 150ms cubic-bezier(0.16,1,0.3,1)}.mode-btn:hover{background:#5e52401f;color:#fbf9f7}.mode-btn.active{background:#2e2e2e;color:#fcfcf9ff}.input-container{max-width:600px;font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;margin:0 auto 32px}.input-group{font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;display:none}.input-group.active{display:block}.input-wrapper{position:relative;margin-bottom:16px}.input-field{width:100%;padding:16px;font-size:16px;border:2px solid #5e524033;border-radius:8px;background:#1f1f1f;color:#fbf9f7;font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;transition:border-color 150ms cubic-bezier(0.16,1,0.3,1)}.input-field:focus{outline:none;border-color:#2e2e2e}.input-field::placeholder{color:#c7c8c9}.autocomplete-list{position:absolute;top:100%;left:0;right:0;background:#1f1f1f;border:1px solid #5e52401f;border-top:none;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;z-index:999;box-shadow:0 4px 6px -1px #0000000a 0 2px 4px -1px #00000005}.autocomplete-item{padding:12px 16px;cursor:pointer;font-size:14px;color:#fbf9f7;transition:background-color 150ms cubic-bezier(0.16,1,0.3,1);border-bottom:1px solid #5e52401f}.autocomplete-item:last-child{border-bottom:none}.autocomplete-item:hover,.autocomplete-item.active{background:#5e52401f}.map-mode{display:none}.map-mode.active{display:block}.line-selector{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:32px}.line-btn{display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:8px;border:none;background:#CECECE;color:#454545;font-size:26px;font-weight:600;cursor:pointer;transition:all 150ms cubic-bezier(0.16,1,0.3,1);font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif}.line-btn:hover{transform:translateY(-2px);box-shadow:0 4px 6px -1px #0000000a 0 2px 4px -1px #00000005}.line-btn.active{color:#fff}.results{margin-top:32px}.result-header{font-size:18px;font-weight:550;margin-bottom:24px;text-align:center;color:#fbf9f7}.interchange-badge{display:inline-block;background:#3b82f614;color:#2e2e2e;padding:4px 12px;border-radius:9999px;font-size:12px;font-weight:500;margin-left:8px;border:1px solid #2e2e2e}.line-container{background:#1f1f1f;border:1px solid #5e52401f;border-radius:12px;padding:24px;margin-bottom:24px;height:350px}.line-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}.line-badge{display:inline-flex;align-items:center;justify-content:center;min-width:48px;height:48px;border-radius:8px;color:#fff;font-size:18px;font-weight:600;padding:0 12px}.line-name{font-size:20px;font-weight:550;color:#fbf9f7}.line-diagram{display:flex;align-items:center;gap:0;overflow-x:auto;padding:16px 0;position:relative;height:250px;justify-content:center}.badge-red{background:#ef444414;color:#c0152fff;border-color:#ff5459ff}.badge-yellow{background:#f59e0b14;color:#a84b2fff;border-color:#e68161ff}.badge-blue{background:#3b82f614;color:#2e2e2e;border-color:#2e2e2e}.status-badge{padding:4px 8px;border-radius:9999px;font-size:12px;font-weight:500}.line-badge{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:48px;height:48px;border-radius:8px;color:#fff;font-size:18px;font-weight:600;padding:0 12px;overflow:hidden;position:relative;font-size:26px}.line-badge.is-suspended{padding-bottom:14px;font-size:22px}.line-badge-sub{position:absolute;bottom:2px;left:0;right:0;height:18px;overflow:hidden;font-weight:400;font-size:11px;text-transform:uppercase;font-family:Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;letter-spacing:.5px;opacity:.9}.line-badge-sub span{display:inline-block;white-space:nowrap;animation:scroll-badge-text 4.5s linear infinite}@keyframes scroll-badge-text{0%{transform:translateX(50%)}100%{transform:translateX(-110%)}}.line-code{position:relative;z-index:1}.station-item{display:flex;flex-direction:column;align-items:center;position:relative;min-width:120px;padding-bottom:60px}.station-marker{width:16px;height:16px;border-radius:50%;background:#1f1f1f;border:4px solid currentColor;z-index:10;top:42px;position:relative;transition:all 250ms cubic-bezier(0.16,1,0.3,1)}.station-item.start-station .station-marker::after{content:'';position:absolute;width:calc(14px*1.1);height:calc(10px*1.1);top:20px;left:-3px;background-image:url('data:image/svg+xml;utf8,<svg width="14" height="10" viewBox="0 0 7 5" fill="white" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.7493V2.87918H4.62129L2.8891 4.64178H4.4527L6.74989 2.3208L4.4529 0H2.8885L4.61479 1.7493H0Z"/></svg>');background-repeat:no-repeat;background-size:contain;color:#fbf9f7}.station-marker::after{color:#fbf9f7}.station-item.start-station.direction-left .station-marker::after{transform:scaleX(-1)}.station-name{position:absolute;top:17px;left:52%;font-size:14px;color:#fbf9f7;white-space:nowrap;transform:rotate(-45deg);transform-origin:left bottom;z-index:5;font-weight:500}.station-name-extra{font-size:13px;font-weight:300}.station-item.highlight .station-name,.station-item.in-route .station-name{color:currentColor;font-weight:700;font-size:14px}.station-code{display:none}.station-transfers{position:absolute;bottom:-25px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:8}.transfer-icon{width:20px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600}.line-connector{height:6px;flex:1;min-width:100px;background:currentColor;position:absolute;left:-1060px;top:109px;z-index:1}.route-path{background:#3b82f614;border:1px solid #2e2e2e;border-radius:8px;padding:20px;margin-bottom:24px;text-align:center}.route-steps{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;font-size:16px;font-weight:500}.route-station{color:#fbf9f7}.route-arrow{color:#2e2e2e;font-weight:600;font-size:20px}.route-transfer{color:#c7c8c9;font-size:14px;font-weight:400;white-space:nowrap}.error-message{text-align:center;color:#c0152fff;font-size:16px;padding:24px;background:#ef444414;border:1px solid #c0152fff;border-radius:8px}.speak-btn{display:inline-flex;align-items:center;padding:12px 24px;background:#2e2e2e;color:#fcfcf9ff;font-size:16px;border:none;border-radius:8px;cursor:pointer;gap:8px;transition:background 150ms,color 150ms;font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif}.speak-btn:active{background:#737373ff}.speak-btn svg{width:24px;height:24px;fill:currentColor}
-
-.station-item.arrow-right .station-marker::before {
-    content: '🡲';
-    position: absolute;
-    left: -60%;
-    top: 250%;
-    color: #fbf9f7;
-    font-size: 16px;
-    line-height: 1;
-    pointer-events: none;
-    z-index: 20; 
-}
-
-.station-item.arrow-left .station-marker::before {
-    content: '🡰';
-    position: absolute;
-    left: -55%;
-    top: 250%;
-    color: #fbf9f7;
-    font-size: 16px;
-    line-height: 1;
-    pointer-events: none;
-    z-index: 20;
-}
-
-.mobile-warning {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #2e2e2e;
-  z-index: 9999;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  text-align: center;
-}
-
-.mobile-icon {
-  margin-bottom: 24px;
-}
-
-.mobile-text {
-  font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;
-  font-size: 18px;
-  color: #fbf9f7;
-  font-weight: 500;
-}
-
-/* tel */
-@media (max-width: 1246px) {
-  .container {
-    display: none;
-  }
-  
-  .mobile-warning {
-    display: flex;
-  }
-}
-
-
-/* grafy na telefon zjebalem - zostawic pod future use >w< */
-@media (max-width: 768px){body{padding:16px}h1{font-size:24px}.mode-selector{flex-direction:column;width:100%}.mode-btn{width:100%}.line-diagram{justify-content:flex-start}.station-item{min-width:80px}.station-name{font-size:11px;max-width:70px}}
-
+    *{box-sizing:border-box;margin:0;padding:0}body{font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;background:#2e2e2e;color:#fbf9f7;line-height:1.5;-webkit-font-smoothing:antialiased;padding:24px}.hind-light{font-family:"Hind",sans-serif;font-weight:300;font-style:normal}.hind-regular{font-family:"Hind",sans-serif;font-weight:400;font-style:normal}.hind-medium{font-family:"Hind",sans-serif;font-weight:500;font-style:normal}.hind-semibold{font-family:"Hind",sans-serif;font-weight:600;font-style:normal}.hind-bold{font-family:"Hind",sans-serif;font-weight:700;font-style:normal}.container{max-width:1200px;margin:0 auto}header{text-align:center;margin-bottom:32px}h1{font-size:30px;font-weight:600;color:#fbf9f7;margin-bottom:8px}.subtitle{font-size:14px;color:#c7c8c9}.mode-selector{display:flex;justify-content:center;gap:12px;margin-bottom:32px;background:#1f1f1f;padding:6px;border-radius:12px;border:1px solid #5e52401f;width:fit-content;margin-left:auto;margin-right:auto}.mode-btn{font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;padding:12px 24px;border:none;background:transparent;color:#c7c8c9;font-size:14px;font-weight:500;cursor:pointer;border-radius:8px;transition:all 150ms cubic-bezier(0.16,1,0.3,1)}.mode-btn:hover{background:#5e52401f;color:#fbf9f7}.mode-btn.active{background:#2e2e2e;color:#fcfcf9ff}.input-container{max-width:600px;font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;margin:0 auto 32px}.input-group{font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;display:none}.input-group.active{display:block}.input-wrapper{position:relative;margin-bottom:16px}.input-field{width:100%;padding:16px;font-size:16px;border:2px solid #5e524033;border-radius:8px;background:#1f1f1f;color:#fbf9f7;font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;transition:border-color 150ms cubic-bezier(0.16,1,0.3,1)}.input-field:focus{outline:none;border-color:#2e2e2e}.input-field::placeholder{color:#c7c8c9}.autocomplete-list{position:absolute;top:100%;left:0;right:0;background:#1f1f1f;border:1px solid #5e52401f;border-top:none;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;z-index:999;box-shadow:0 4px 6px -1px #0000000a 0 2px 4px -1px #00000005}.autocomplete-item{padding:12px 16px;cursor:pointer;font-size:14px;color:#fbf9f7;transition:background-color 150ms cubic-bezier(0.16,1,0.3,1);border-bottom:1px solid #5e52401f}.autocomplete-item:last-child{border-bottom:none}.autocomplete-item:hover,.autocomplete-item.active{background:#5e52401f}.map-mode{display:none}.map-mode.active{display:block}.line-selector{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:32px}.line-btn{display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:8px;border:none;background:#CECECE;color:#454545;font-size:26px;font-weight:600;cursor:pointer;transition:all 150ms cubic-bezier(0.16,1,0.3,1);font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif}.line-btn:hover{transform:translateY(-2px);box-shadow:0 4px 6px -1px #0000000a 0 2px 4px -1px #00000005}.line-btn.active{color:#fff}.results{margin-top:32px}.result-header{font-size:18px;font-weight:550;margin-bottom:24px;text-align:center;color:#fbf9f7}.interchange-badge{display:inline-block;background:#3b82f614;color:#2e2e2e;padding:4px 12px;border-radius:9999px;font-size:12px;font-weight:500;margin-left:8px;border:1px solid #2e2e2e}.line-container{background:#1f1f1f;border:1px solid #5e52401f;border-radius:12px;padding:24px;margin-bottom:24px;height:350px}.line-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}.line-badge{display:inline-flex;align-items:center;justify-content:center;min-width:48px;height:48px;border-radius:8px;color:#fff;font-size:18px;font-weight:600;padding:0 12px}.line-name{font-size:20px;font-weight:550;color:#fbf9f7}.line-diagram{display:flex;align-items:center;gap:0;overflow-x:auto;padding:16px 0;position:relative;height:250px;justify-content:center}.badge-red{background:#ef444414;color:#c0152fff;border-color:#ff5459ff}.badge-yellow{background:#f59e0b14;color:#a84b2fff;border-color:#e68161ff}.badge-blue{background:#3b82f614;color:#2e2e2e;border-color:#2e2e2e}.status-badge{padding:4px 8px;border-radius:9999px;font-size:12px;font-weight:500}.line-badge{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:48px;height:48px;border-radius:8px;color:#fff;font-size:18px;font-weight:600;padding:0 12px;overflow:hidden;position:relative;font-size:26px}.line-badge.is-suspended{padding-bottom:14px;font-size:22px}.line-badge-sub{position:absolute;bottom:2px;left:0;right:0;height:18px;overflow:hidden;font-weight:400;font-size:11px;text-transform:uppercase;font-family:Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;letter-spacing:.5px;opacity:.9}.line-badge-sub span{display:inline-block;white-space:nowrap;animation:scroll-badge-text 4.5s linear infinite}@keyframes scroll-badge-text{0%{transform:translateX(50%)}100%{transform:translateX(-110%)}}.line-code{position:relative;z-index:1}.station-item{display:flex;flex-direction:column;align-items:center;position:relative;min-width:120px;padding-bottom:60px}.station-marker{width:16px;height:16px;border-radius:50%;background:#1f1f1f;border:4px solid currentColor;z-index:10;top:42px;position:relative;transition:all 250ms cubic-bezier(0.16,1,0.3,1)}.station-item.start-station .station-marker::after{content:'';position:absolute;width:calc(14px*1.1);height:calc(10px*1.1);top:20px;left:-3px;background-image:url('data:image/svg+xml;utf8,<svg width="14" height="10" viewBox="0 0 7 5" fill="white" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.7493V2.87918H4.62129L2.8891 4.64178H4.4527L6.74989 2.3208L4.4529 0H2.8885L4.61479 1.7493H0Z"/></svg>');background-repeat:no-repeat;background-size:contain;color:#fbf9f7}.station-marker::after{color:#fbf9f7}.station-item.start-station.direction-left .station-marker::after{transform:scaleX(-1)}.station-name{position:absolute;top:17px;left:52%;font-size:14px;color:#fbf9f7;white-space:nowrap;transform:rotate(-45deg);transform-origin:left bottom;z-index:5;font-weight:500}.station-name-extra{font-size:13px;font-weight:300}.station-item.highlight .station-name,.station-item.in-route .station-name{color:currentColor;font-weight:700;font-size:14px}.station-code{display:none}.station-transfers{position:absolute;bottom:-25px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:8}.transfer-icon{width:20px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600}.line-connector{height:6px;flex:1;min-width:100px;background:currentColor;position:absolute;left:-1060px;top:109px;z-index:1}.route-path{background:#3b82f614;border:1px solid #2e2e2e;border-radius:8px;padding:20px;margin-bottom:24px;text-align:center}.route-steps{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;font-size:16px;font-weight:500}.route-station{color:#fbf9f7}.route-arrow{color:#2e2e2e;font-weight:600;font-size:20px}.route-transfer{color:#c7c8c9;font-size:14px;font-weight:400;white-space:nowrap}.error-message{text-align:center;color:#c0152fff;font-size:16px;padding:24px;background:#ef444414;border:1px solid #c0152fff;border-radius:8px}.speak-btn{display:inline-flex;align-items:center;padding:12px 24px;background:#2e2e2e;color:#fcfcf9ff;font-size:16px;border:none;border-radius:8px;cursor:pointer;gap:8px;transition:background 150ms,color 150ms;font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif}.speak-btn:active{background:#737373ff}.speak-btn svg{width:24px;height:24px;fill:currentColor}.station-item.arrow-right .station-marker::before{content:'🡲';position:absolute;left:-60%;top:250%;color:#fbf9f7;font-size:16px;line-height:1;pointer-events:none;z-index:20}.station-item.arrow-left .station-marker::before{content:'🡰';position:absolute;left:-55%;top:250%;color:#fbf9f7;font-size:16px;line-height:1;pointer-events:none;z-index:20}.mobile-warning{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#2e2e2e;z-index:9999;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}.mobile-icon{margin-bottom:24px}.mobile-text{font-family:'Frutiger LT Pro','Frutiger Neue','Hind','Segoe UI','Segoe','Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:18px;color:#fbf9f7;font-weight:500}@media (max-width: 1246px){.container{display:none}.mobile-warning{display:flex}}@media (max-width: 768px){body{padding:16px}h1{font-size:24px}.mode-selector{flex-direction:column;width:100%}.mode-btn{width:100%}.line-diagram{justify-content:flex-start}.station-item{min-width:80px}.station-name{font-size:11px;max-width:70px}}
 </style>
 
 <body>
-   <div class="mobile-warning">
-    <div class="mobile-icon"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M280-40q-33 0-56.5-23.5T200-120v-720q0-33 23.5-56.5T280-920h400q33 0 56.5 23.5T760-840v124q18 7 29 22t11 34v80q0 19-11 34t-29 22v404q0 33-23.5 56.5T680-40H280Zm0-80h400v-720H280v720Zm0 0v-720 720Zm200-200q66 0 113-47t47-113q0-66-47-113t-113-47q-66 0-113 47t-47 113q0 66 47 113t113 47Zm0-60q-42 0-71-29t-29-71q0-12 3-23.5t9-22.5l134 134q-11 6-22.5 9t-23.5 3Zm88-54L434-568q11-6 22.5-9t23.5-3q42 0 71 29t29 71q0 12-3 23.5t-9 22.5Z"/></svg></div>
-    <div class="mobile-text">
-      <b>Strona obecnie dostępna jedynie na większych ekranach.</b><br><br>
-      Prosimy o rozszerzenie okna bądź skorzystanie z innego urządzenia.
-    </div>
-  </div>
-
-  <div class="container">
-    <header>
-      <h1 style="margin-bottom: -2px;">Mrrp~</h1>
-      <p class="subtitle">Miejski i Regionalny Ruch Pociągów</p>
-    </header>
-
-    <div class="mode-selector">
-      <button class="mode-btn active" data-mode="station">Wyświetl stację</button>
-      <button class="mode-btn" data-mode="route">Znajdź trasę</button>
-      <button class="mode-btn" data-mode="map">Mapa</button>
+    <div class="mobile-warning">
+        <div class="mobile-icon"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960"
+                width="48px" fill="#FFFFFF">
+                <path
+                    d="M280-40q-33 0-56.5-23.5T200-120v-720q0-33 23.5-56.5T280-920h400q33 0 56.5 23.5T760-840v124q18 7 29 22t11 34v80q0 19-11 34t-29 22v404q0 33-23.5 56.5T680-40H280Zm0-80h400v-720H280v720Zm0 0v-720 720Zm200-200q66 0 113-47t47-113q0-66-47-113t-113-47q-66 0-113 47t-47 113q0 66 47 113t113 47Zm0-60q-42 0-71-29t-29-71q0-12 3-23.5t9-22.5l134 134q-11 6-22.5 9t-23.5 3Zm88-54L434-568q11-6 22.5-9t23.5-3q42 0 71 29t29 71q0 12-3 23.5t-9 22.5Z" />
+            </svg></div>
+        <div class="mobile-text">
+            <b>Strona obecnie dostępna jedynie na większych ekranach.</b><br><br>
+            Prosimy o rozszerzenie okna bądź skorzystanie z innego urządzenia.
+        </div>
     </div>
 
-    <div class="input-container">
-      <div id="station-input" class="input-group active">
-        <div class="input-wrapper">
-          <input type="text" class="input-field" id="station-code" placeholder="Wprowadź kod lub nazwę stacji" autocomplete="off">
-          <div class="autocomplete-list" id="station-autocomplete"></div>
+    <div class="container">
+        <header>
+            <h1 style="margin-bottom: -2px;">Mrrp~</h1>
+            <p class="subtitle">Miejski i Regionalny Ruch Pociągów</p>
+        </header>
+
+        <div class="mode-selector">
+            <button class="mode-btn active" data-mode="station">Wyświetl stację</button>
+            <button class="mode-btn" data-mode="route">Znajdź trasę</button>
+            <button class="mode-btn" data-mode="map">Mapa</button>
         </div>
-      </div>
-      <div id="route-input" class="input-group">
-        <div class="input-wrapper">
-          <input type="text" class="input-field" id="start-station" placeholder="Stacja początkowa" autocomplete="off">
-          <div class="autocomplete-list" id="start-autocomplete"></div>
+
+        <div class="input-container">
+            <div id="station-input" class="input-group active">
+                <div class="input-wrapper">
+                    <input type="text" class="input-field" id="station-code" placeholder="Wprowadź kod lub nazwę stacji"
+                        autocomplete="off">
+                    <div class="autocomplete-list" id="station-autocomplete"></div>
+                </div>
+            </div>
+            <div id="route-input" class="input-group">
+                <div class="input-wrapper">
+                    <input type="text" class="input-field" id="start-station" placeholder="Stacja początkowa"
+                        autocomplete="off">
+                    <div class="autocomplete-list" id="start-autocomplete"></div>
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" class="input-field" id="end-station" placeholder="Stacja końcowa"
+                        autocomplete="off">
+                    <div class="autocomplete-list" id="end-autocomplete"></div>
+                </div>
+            </div>
+            <div id="map-input" class="input-group map-mode">
+                <div class="line-selector" id="line-selector"></div>
+            </div>
         </div>
-        <div class="input-wrapper">
-          <input type="text" class="input-field" id="end-station" placeholder="Stacja końcowa" autocomplete="off">
-          <div class="autocomplete-list" id="end-autocomplete"></div>
-        </div>
-      </div>
-      <div id="map-input" class="input-group map-mode"> 
-        <div class="line-selector" id="line-selector"></div>
-      </div>
+
+        <div class="results" id="results"></div>
     </div>
 
-    <div class="results" id="results"></div>
-  </div>
-
-  <script>
-    const lines = {
-      R: {
-        name: 'Regionalny',
-        icon: 'regio.svg',
-        color: '#49986D',
-        textcolor: '#FFFFFF',
-        sortOrder: 99,
-        status: 0,
-        stations: [
-          { code: 'PT', name: 'Park Technologiczny' },
-          { code: 'KS', name: 'Kolonia Staszica  (Spawn)' }
-        ]
-      },
-      T4: {
-        name: 'Linia T4',
-        icon: 'lightrail.svg',
-        color: '#FFC300',
-        textcolor: '#2E2E2E',
-        sortOrder: 0,
-        status: 0,
-        stations: [
-          { code: 'VA', name: 'Investpark  (Akacjowa)' },
-          { code: 'PT', name: 'Park Technologiczny' }
-        ]
-      }
-    };
-
-    let audioContext = null;
-
-    function getAudioContext() {
-      if (!audioContext) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      return audioContext;
-    }
-
-    async function trimAudioTrailingSilence(audioBuffer) {
-      const sampleRate = audioBuffer.sampleRate;
-      const silenceDuration = 0;
-      const samplesToRemove = Math.floor(silenceDuration * sampleRate);
-      
-      const originalLength = audioBuffer.length;
-      const newLength = Math.max(1, originalLength - samplesToRemove);
-      
-      const ctx = getAudioContext();
-      const trimmedBuffer = ctx.createBuffer(
-        audioBuffer.numberOfChannels,
-        newLength,
-        sampleRate
-      );
-      
-      for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
-        const sourceData = audioBuffer.getChannelData(channel);
-        const trimmedData = trimmedBuffer.getChannelData(channel);
-        trimmedData.set(sourceData.slice(0, newLength));
-      }
-      
-      return trimmedBuffer;
-    }
-
-    const audioBufferCache = {};
-
-    async function fetchAndDecodeAudio(filePath) {
-      if (audioBufferCache[filePath]) {
-        return audioBufferCache[filePath];
-      }
-      
-      try {
-        const response = await fetch(filePath);
-        const arrayBuffer = await response.arrayBuffer();
-        const audioBuffer = await getAudioContext().decodeAudioData(arrayBuffer);
-        
-        const trimmedBuffer = await trimAudioTrailingSilence(audioBuffer);
-        audioBufferCache[filePath] = trimmedBuffer;
-        
-        return trimmedBuffer;
-      } catch (error) {
-        console.error(`Error loading audio ${filePath}:`, error);
-        return null;
-      }
-    }
-
-    function preloadLineAudio(lineCode, stationNames) {
-      const sequence = buildAnnouncementSequence(lineCode, stationNames);
-      
-      sequence.forEach(file => {
-        fetchAndDecodeAudio(file).catch(err => console.log('Preload skipped for:', file));
-      });
-    }
-
-    function playAnnouncementMp3s(files, onEnd) {
-      let idx = 0;
-      const ctx = getAudioContext();
-      
-      async function playNext() {
-        if (idx >= files.length) {
-          if (typeof onEnd === "function") onEnd();
-          return;
-        }
-        
-        const audioBuffer = await fetchAndDecodeAudio(files[idx]);
-        if (!audioBuffer) {
-          idx++;
-          playNext();
-          return;
-        }
-        
-        const source = ctx.createBufferSource();
-        source.buffer = audioBuffer;
-        source.connect(ctx.destination);
-        
-        source.onended = () => {
-          idx++;
-          playNext();
+    <script>
+        const lines = {
+            R: {
+                name: 'Regionalny',
+                icon: 'regio.svg',
+                color: '#49986D',
+                textcolor: '#FFFFFF',
+                sortOrder: 99,
+                status: 0,
+                stations: [
+                    { code: 'PT', name: 'Park Technologiczny', transferInfo: 'tram' },
+                    { code: 'KS', name: 'Kolonia Staszica  (Spawn)' }
+                ]
+            },
+            T4: {
+                name: 'Linia T4',
+                icon: 'lightrail.svg',
+                color: '#FFC300',
+                textcolor: '#2E2E2E',
+                sortOrder: 0,
+                status: 0,
+                stations: [
+                    { code: 'VA', name: 'Investpark  (Akacjowa)' },
+                    { code: 'PT', name: 'Park Technologiczny', transferInfo: 'regio' }
+                ]
+            }
         };
-        
-        source.start(0);
-      }
-      
-      playNext();
-    }
 
-    function stopMp3(stopName) {
-      const base = '/zapowiedzi/przystanki/';
-      return base + stopName + '.wav';
-    }
+        let audioContext = null;
 
-    function getSpecialAnnouncementFiles(status) {
-      if (status & 16) return [];
-      
-      const u = '/zapowiedzi/uwaga.mp3';
-      const a = '/zapowiedzi/awaria.mp3';
-      const s = '/zapowiedzi/trasa-skrocona.mp3';
-      const z = '/zapowiedzi/trasa-zmieniona.mp3';
-      const n = '/zapowiedzi/nowa-trasa.mp3';
-      const t = '/zapowiedzi/techniczna.mp3';
+        function getAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            return audioContext;
+        }
 
-      const basicStatus = status & 15; 
+        async function trimAudioTrailingSilence(audioBuffer) {
+            const sampleRate = audioBuffer.sampleRate;
+            const silenceDuration = 0;
+            const samplesToRemove = Math.floor(silenceDuration * sampleRate);
 
-      switch (basicStatus) {
-        case 1:  return [u, s]; 
-        case 2:  return [u, z]; 
-        case 3:  return [u, z]; 
-        case 4:  return [n];    
-        case 5:  return [n, s]; 
-        case 6:  return [n, z]; 
-        case 7:  return [n, z]; 
-        case 8:  return [u, a]; 
-        case 9:  return [u, a, s]; 
-        case 10: return [u, a, z]; 
-        case 11: return [u, a, z]; 
-        case 12: return [u, a];    
-        case 13: return [u, a, n]; 
-        case 14: return [u, a, z]; 
-        case 15: return [u, a, n]; 
-        case 98: return [t, a]; 
-        case 99: return [t]; 
-        default: return [];
-      }
-    }
+            const originalLength = audioBuffer.length;
+            const newLength = Math.max(1, originalLength - samplesToRemove);
 
-    function buildAnnouncementSequence(lineCode, stops) {
-      const lineData = lines[lineCode];
-      const status = lineData ? lineData.status : 0;
-      
-      const files = [];
+            const ctx = getAudioContext();
+            const trimmedBuffer = ctx.createBuffer(
+                audioBuffer.numberOfChannels,
+                newLength,
+                sampleRate
+            );
 
-      files.push('/zapowiedzi/linia.mp3');
-      files.push('/zapowiedzi/linie/' + lineCode + '.mp3');
-      files.push('/zapowiedzi/kierunek2.mp3');
-      files.push('/zapowiedzi/przystanki/' + stops[stops.length - 1] + '.wav');
-      files.push('/zapowiedzi/kurs-przez.mp3');
+            for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+                const sourceData = audioBuffer.getChannelData(channel);
+                const trimmedData = trimmedBuffer.getChannelData(channel);
+                trimmedData.set(sourceData.slice(0, newLength));
+            }
 
-      const specialFiles = getSpecialAnnouncementFiles(status);
-      files.push(...specialFiles);
+            return trimmedBuffer;
+        }
 
-      for (let i = 0; i < stops.length - 1; i++) {
-        files.push(stopMp3(stops[i]));
-      }
+        const audioBufferCache = {};
 
-      return files;
-    }
+        async function fetchAndDecodeAudio(filePath) {
+            if (audioBufferCache[filePath]) {
+                return audioBufferCache[filePath];
+            }
 
-    function formatStationName(name) {
-      const match = name.match(/^(.*?)(\s*\(.*\))$/);
-      if (!match) return `<span class="station-name-main">${name}</span>`;
-      const main = match[1].trim();
-      const extra = match[2].replace(/[()]/g, '').trim();
-      return `
+            try {
+                const response = await fetch(filePath);
+                const arrayBuffer = await response.arrayBuffer();
+                const audioBuffer = await getAudioContext().decodeAudioData(arrayBuffer);
+
+                const trimmedBuffer = await trimAudioTrailingSilence(audioBuffer);
+                audioBufferCache[filePath] = trimmedBuffer;
+
+                return trimmedBuffer;
+            } catch (error) {
+                console.error(`Error loading audio ${filePath}:`, error);
+                return null;
+            }
+        }
+
+        function preloadLineAudio(lineCode, stationNames) {
+            const sequence = buildAnnouncementSequence(lineCode, stationNames);
+
+            sequence.forEach(file => {
+                fetchAndDecodeAudio(file).catch(err => console.log('Preload skipped for:', file));
+            });
+        }
+
+        function playAnnouncementMp3s(files, onEnd) {
+            let idx = 0;
+            const ctx = getAudioContext();
+
+            async function playNext() {
+                if (idx >= files.length) {
+                    if (typeof onEnd === "function") onEnd();
+                    return;
+                }
+
+                const audioBuffer = await fetchAndDecodeAudio(files[idx]);
+                if (!audioBuffer) {
+                    idx++;
+                    playNext();
+                    return;
+                }
+
+                const source = ctx.createBufferSource();
+                source.buffer = audioBuffer;
+                source.connect(ctx.destination);
+
+                source.onended = () => {
+                    idx++;
+                    playNext();
+                };
+
+                source.start(0);
+            }
+
+            playNext();
+        }
+
+        function stopMp3(stopName) {
+            const base = '/zapowiedzi/przystanki/';
+            return base + stopName + '.wav';
+        }
+
+        function getSpecialAnnouncementFiles(status) {
+            const a = '/zapowiedzi/awaria.wav';
+
+            const basicStatus = status & 15;
+
+            switch (basicStatus) {
+                case 16: return [a];
+                default: return [];
+            }
+        }
+
+        function buildAnnouncementSequence(lineCode, stops) {
+            const lineData = lines[lineCode];
+            const status = lineData ? lineData.status : 0;
+
+            const files = [];
+
+            files.push('/zapowiedzi/linia.mp3');
+            files.push('/zapowiedzi/linie/' + lineCode + '.mp3');
+            files.push('/zapowiedzi/kierunek2.mp3');
+            files.push('/zapowiedzi/przystanki/' + stops[stops.length - 1] + '.wav');
+            files.push('/zapowiedzi/kurs-przez.mp3');
+
+            const specialFiles = getSpecialAnnouncementFiles(status);
+            files.push(...specialFiles);
+
+            for (let i = 0; i < stops.length - 1; i++) {
+                files.push(stopMp3(stops[i]));
+                
+                if (lineData && lineData.stations) {
+                    const station = lineData.stations.find(s => s.name === stops[i]);
+                    if (station && station.transferInfo) {
+                        files.push('/zapowiedzi/przesiadki/' + station.transferInfo + '.wav');
+                    }
+                }
+            }
+
+            return files;
+        }
+
+        function formatStationName(name) {
+            const match = name.match(/^(.*?)(\s*\(.*\))$/);
+            if (!match) return `<span class="station-name-main">${name}</span>`;
+            const main = match[1].trim();
+            const extra = match[2].replace(/[()]/g, '').trim();
+            return `
         <span class="station-name-main">${main}</span>
         <span class="station-name-extra">${extra}</span>
       `;
-    }
-
-    function getSortedLineKeys() {
-      return Object.keys(lines).sort((a, b) => (lines[a].sortOrder ?? 9999) - (lines[b].sortOrder ?? 9999));
-    }
-
-    const stationIndex = {};
-    const stationNameIndex = {};
-    const allStations = [];
-    Object.keys(lines).forEach(lineCode => {
-      lines[lineCode].stations.forEach(station => {
-        if (!stationIndex[station.code]) {
-          stationIndex[station.code] = [];
         }
-        stationIndex[station.code].push(lineCode);
 
-        const nameLower = station.name.toLowerCase();
-        if (!stationNameIndex[nameLower]) {
-          stationNameIndex[nameLower] = station.code;
+        function getSortedLineKeys() {
+            return Object.keys(lines).sort((a, b) => (lines[a].sortOrder ?? 9999) - (lines[b].sortOrder ?? 9999));
         }
-        if (!allStations.find(s => s.code === station.code)) {
-          allStations.push({ code: station.code, name: station.name });
+
+        const stationIndex = {};
+        const stationNameIndex = {};
+        const allStations = [];
+        Object.keys(lines).forEach(lineCode => {
+            lines[lineCode].stations.forEach(station => {
+                if (!stationIndex[station.code]) {
+                    stationIndex[station.code] = [];
+                }
+                stationIndex[station.code].push(lineCode);
+
+                const nameLower = station.name.toLowerCase();
+                if (!stationNameIndex[nameLower]) {
+                    stationNameIndex[nameLower] = station.code;
+                }
+                if (!allStations.find(s => s.code === station.code)) {
+                    allStations.push({ code: station.code, name: station.name });
+                }
+            });
+        });
+
+        function resolveStationCode(input) {
+            input = input.trim();
+            const upperInput = input.toUpperCase();
+            if (stationIndex[upperInput]) {
+                return upperInput;
+            }
+            const nameLower = input.toLowerCase();
+            if (stationNameIndex[nameLower]) {
+                return stationNameIndex[nameLower];
+            }
+            return null;
         }
-      });
-    });
 
-    function resolveStationCode(input) {
-      input = input.trim();
-      const upperInput = input.toUpperCase();
-      if (stationIndex[upperInput]) {
-        return upperInput;
-      }
-      const nameLower = input.toLowerCase();
-      if (stationNameIndex[nameLower]) {
-        return stationNameIndex[nameLower];
-      }
-      return null;
-    }
+        function buildGraph() {
+            const graph = {};
+            Object.values(lines).forEach(line => {
+                if (line.status > 15 && line.status < 90) return;
+                if (line.status == 98) return;
 
-    function buildGraph() {
-      const graph = {};
-      Object.values(lines).forEach(line => {
-        if (line.status > 15 && line.status < 90) return;
-        if (line.status == 98) return;
+                for (let i = 0; i < line.stations.length; i++) {
+                    const sCurr = line.stations[i];
+                    const code = sCurr.code;
+                    if (!graph[code]) graph[code] = new Set();
 
-        for (let i = 0; i < line.stations.length; i++) {
-          const sCurr = line.stations[i];
-          const code = sCurr.code;
-          if (!graph[code]) graph[code] = new Set();
-          
-          if (i > 0) {
-             const sPrev = line.stations[i - 1];
-             if (sCurr.oneWay !== 'P' && sPrev.oneWay !== 'P') {
-                 graph[code].add(sPrev.code);
-             }
-          }
+                    if (i > 0) {
+                        const sPrev = line.stations[i - 1];
+                        if (sCurr.oneWay !== 'P' && sPrev.oneWay !== 'P') {
+                            graph[code].add(sPrev.code);
+                        }
+                    }
 
-          if (i < line.stations.length - 1) {
-             const sNext = line.stations[i + 1];
-             if (sCurr.oneWay !== 'T' && sNext.oneWay !== 'T') {
-                graph[code].add(sNext.code);
-             }
-          }
+                    if (i < line.stations.length - 1) {
+                        const sNext = line.stations[i + 1];
+                        if (sCurr.oneWay !== 'T' && sNext.oneWay !== 'T') {
+                            graph[code].add(sNext.code);
+                        }
+                    }
+                }
+            });
+            return graph;
         }
-      });
-      return graph;
-    }
 
-    // od nowa
-    const graph = buildGraph();
+        // od nowa
+        const graph = buildGraph();
 
-    function findRoute(start, end) {
-      if (start === end) return [start];
-      
-      if (!graph[start] || !graph[end]) return null;
-      
-      const queue = [[start]];
-      const visited = new Set([start]);
-      while (queue.length > 0) {
-        const path = queue.shift();
-        const current = path[path.length - 1];
-        if (current === end) return path;
-        const neighbors = graph[current] || new Set();
-        for (const neighbor of neighbors) {
-          if (!visited.has(neighbor)) {
-            visited.add(neighbor);
-            queue.push([...path, neighbor]);
-          }
+        function findRoute(start, end) {
+            if (start === end) return [start];
+
+            if (!graph[start] || !graph[end]) return null;
+
+            const queue = [[start]];
+            const visited = new Set([start]);
+            while (queue.length > 0) {
+                const path = queue.shift();
+                const current = path[path.length - 1];
+                if (current === end) return path;
+                const neighbors = graph[current] || new Set();
+                for (const neighbor of neighbors) {
+                    if (!visited.has(neighbor)) {
+                        visited.add(neighbor);
+                        queue.push([...path, neighbor]);
+                    }
+                }
+            }
+            return null;
         }
-      }
-      return null;
-    }
 
-    function getStationName(code) {
-      for (const line of Object.values(lines)) {
-        const station = line.stations.find(s => s.code === code);
-        if (station) return station.name;
-      }
-      return code;
-    }
-    function getLinesAtStation(code) {
-      return stationIndex[code] || [];
-    }
-    function getLinesSegment(stationA, stationB) {
-      const usedLines = [];
-      Object.entries(lines).forEach(([lineCode, line]) => {
-        if (line.status > 15 && line.status < 90) return;
-        if (line.status == 98) return;
-
-        const aIdx = line.stations.findIndex(s => s.code === stationA);
-        const bIdx = line.stations.findIndex(s => s.code === stationB);
-        if (aIdx !== -1 && bIdx !== -1 && Math.abs(aIdx - bIdx) === 1) {
-          usedLines.push(lineCode);
+        function getStationName(code) {
+            for (const line of Object.values(lines)) {
+                const station = line.stations.find(s => s.code === code);
+                if (station) return station.name;
+            }
+            return code;
         }
-      });
-      return usedLines[0];
-    }
-    function getRouteLineSegments(route) {
-      const segments = [];
-      let currentLine = null;
-      let segmentStart = route[0];
-      for (let i = 0; i < route.length - 1; i++) {
-        const nextLine = getLinesSegment(route[i], route[i + 1]);
-        if (nextLine !== currentLine) {
-          if (currentLine !== null) {
-            segments.push({ line: currentLine, from: segmentStart, to: route[i] });
-          }
-          currentLine = nextLine;
-          segmentStart = route[i];
+        function getLinesAtStation(code) {
+            return stationIndex[code] || [];
         }
-      }
-      if (currentLine !== null) {
-        segments.push({ line: currentLine, from: segmentStart, to: route[route.length - 1] });
-      }
-      return segments;
-    }
+        function getLinesSegment(stationA, stationB) {
+            const usedLines = [];
+            Object.entries(lines).forEach(([lineCode, line]) => {
+                if (line.status > 15 && line.status < 90) return;
+                if (line.status == 98) return;
 
-    function getLineStatusUI(status) {
-      if (status & 16) {
-          return { text: "LINIA NIE KURSUJE", className: "badge-red" };
-      }
-
-      if (status == 98) {
-          return { text: "LINIA TECHNICZNA - NIE KURSUJE", className: "badge-red" };
-      }
-
-      if (status == 99) {
-          return { text: "LINIA TECHNICZNA", className: "badge-blue" };
-      }
-
-      // zajebie sie przez te pieprzone bitmaski
-      const s = status & 15; 
-      
-      switch (s) {
-        case 8:  return { text: "AWARIA NA LINII", className: "badge-red" };
-        case 4:  return { text: "NOWA TRASA", className: "badge-blue" };
-        case 12: return { text: "AWARIA NA LINII", className: "badge-yellow" };
-        case 2:  return { text: "TRASA ZMIENIONA", className: "badge-yellow" };
-        case 10: return { text: "TRASA ZMIENIONA", className: "badge-yellow" };
-        case 6:  return { text: "NOWA TRASA", className: "badge-blue" };
-        case 14: return { text: "TRASA ZMIENIONA", className: "badge-yellow" };
-        case 1:  return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
-        case 9:  return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
-        case 5:  return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
-        case 13: return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
-        case 3:  return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
-        case 11: return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
-        case 7:  return { text: "NOWA TRASA", className: "badge-blue" };
-        case 15: return { text: "NOWA TRASA", className: "badge-purple" };
-        default: return null;
-      }
-    }
-
-    function renderLineDiagram(lineCode, highlightStation = null, routeStations = [], isRouteMode = false, routeStart = null, isMapMode = false, isStationMode = false, showSpeak = false, speakStops = [], speakLineCode = null) {
-      const line = lines[lineCode];
-      if (!line) return '';
-      const stationElements = line.stations.map((station, index) => {
-        const isHighlight = station.code === highlightStation;
-        const isInRoute = routeStations.includes(station.code);
-        const isStartStation = station.code === routeStart && isRouteMode;
-        const classes = ['station-item'];
-        if (isHighlight) classes.push('highlight');
-        if (isInRoute && !isMapMode) classes.push('in-route');
-        if (isStartStation) {
-          classes.push('start-station');
-          const stationIndex = routeStations.indexOf(station.code);
-          const nextStation = routeStations[stationIndex + 1];
-          if (nextStation) {
-            const currentIdx = line.stations.findIndex(s => s.code === station.code);
-            const nextIdx = line.stations.findIndex(s => s.code === nextStation);
-            if (nextIdx < currentIdx) classes.push('direction-left');
-          }
+                const aIdx = line.stations.findIndex(s => s.code === stationA);
+                const bIdx = line.stations.findIndex(s => s.code === stationB);
+                if (aIdx !== -1 && bIdx !== -1 && Math.abs(aIdx - bIdx) === 1) {
+                    usedLines.push(lineCode);
+                }
+            });
+            return usedLines[0];
         }
-        
-        // kierunek pod nowe style
-        if (station.oneWay === 'P') {
-            classes.push('arrow-right');
-        } else if (station.oneWay === 'T') {
-            classes.push('arrow-left');
+        function getRouteLineSegments(route) {
+            const segments = [];
+            let currentLine = null;
+            let segmentStart = route[0];
+            for (let i = 0; i < route.length - 1; i++) {
+                const nextLine = getLinesSegment(route[i], route[i + 1]);
+                if (nextLine !== currentLine) {
+                    if (currentLine !== null) {
+                        segments.push({ line: currentLine, from: segmentStart, to: route[i] });
+                    }
+                    currentLine = nextLine;
+                    segmentStart = route[i];
+                }
+            }
+            if (currentLine !== null) {
+                segments.push({ line: currentLine, from: segmentStart, to: route[route.length - 1] });
+            }
+            return segments;
         }
-        
-        let markerColor = line.color;
-        if (isRouteMode && !isInRoute && !isHighlight) {
-          markerColor = '#FBF9F7';
+
+        function getLineStatusUI(status) {
+            if (status & 16) {
+                return { text: "LINIA NIE KURSUJE", className: "badge-red" };
+            }
+
+            if (status == 98) {
+                return { text: "LINIA TECHNICZNA - NIE KURSUJE", className: "badge-red" };
+            }
+
+            if (status == 99) {
+                return { text: "LINIA TECHNICZNA", className: "badge-blue" };
+            }
+
+            // zajebie sie przez te pieprzone bitmaski
+            const s = status & 15;
+
+            switch (s) {
+                case 8: return { text: "AWARIA NA LINII", className: "badge-red" };
+                case 4: return { text: "NOWA TRASA", className: "badge-blue" };
+                case 12: return { text: "AWARIA NA LINII", className: "badge-yellow" };
+                case 2: return { text: "TRASA ZMIENIONA", className: "badge-yellow" };
+                case 10: return { text: "TRASA ZMIENIONA", className: "badge-yellow" };
+                case 6: return { text: "NOWA TRASA", className: "badge-blue" };
+                case 14: return { text: "TRASA ZMIENIONA", className: "badge-yellow" };
+                case 1: return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
+                case 9: return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
+                case 5: return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
+                case 13: return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
+                case 3: return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
+                case 11: return { text: "TRASA SKRÓCONA", className: "badge-yellow" };
+                case 7: return { text: "NOWA TRASA", className: "badge-blue" };
+                case 15: return { text: "NOWA TRASA", className: "badge-purple" };
+                default: return null;
+            }
         }
-        const transferLines = getLinesAtStation(station.code);
-        const otherLines = transferLines
-          .filter(l => l !== lineCode)
-          .sort((a, b) => (lines[a].sortOrder ?? 9999) - (lines[b].sortOrder ?? 9999));
-        let transfersHtml = '';
-        if (otherLines.length > 0 && (isMapMode || isStationMode)) {
-          transfersHtml = `<div class="station-transfers">
+
+        function renderLineDiagram(lineCode, highlightStation = null, routeStations = [], isRouteMode = false, routeStart = null, isMapMode = false, isStationMode = false, showSpeak = false, speakStops = [], speakLineCode = null) {
+            const line = lines[lineCode];
+            if (!line) return '';
+            const stationElements = line.stations.map((station, index) => {
+                const isHighlight = station.code === highlightStation;
+                const isInRoute = routeStations.includes(station.code);
+                const isStartStation = station.code === routeStart && isRouteMode;
+                const classes = ['station-item'];
+                if (isHighlight) classes.push('highlight');
+                if (isInRoute && !isMapMode) classes.push('in-route');
+                if (isStartStation) {
+                    classes.push('start-station');
+                    const stationIndex = routeStations.indexOf(station.code);
+                    const nextStation = routeStations[stationIndex + 1];
+                    if (nextStation) {
+                        const currentIdx = line.stations.findIndex(s => s.code === station.code);
+                        const nextIdx = line.stations.findIndex(s => s.code === nextStation);
+                        if (nextIdx < currentIdx) classes.push('direction-left');
+                    }
+                }
+
+                // kierunek pod nowe style
+                if (station.oneWay === 'P') {
+                    classes.push('arrow-right');
+                } else if (station.oneWay === 'T') {
+                    classes.push('arrow-left');
+                }
+
+                let markerColor = line.color;
+                if (isRouteMode && !isInRoute && !isHighlight) {
+                    markerColor = '#FBF9F7';
+                }
+                const transferLines = getLinesAtStation(station.code);
+                const otherLines = transferLines
+                    .filter(l => l !== lineCode)
+                    .sort((a, b) => (lines[a].sortOrder ?? 9999) - (lines[b].sortOrder ?? 9999));
+                let transfersHtml = '';
+                if (otherLines.length > 0 && (isMapMode || isStationMode)) {
+                    transfersHtml = `<div class="station-transfers">
             ${otherLines.map(l => `<div class="transfer-icon" style="background-color: ${lines[l].color}; color: ${lines[l].textcolor};">${l}</div>`).join('')}
           </div>`;
-        }
-        return `
+                }
+                return `
           <div class="${classes.join(' ')}" style="color: ${markerColor}">
             <div class="station-marker"></div>
             <div class="station-name">${formatStationName(station.name)}</div>
             ${transfersHtml}
           </div>
         `;
-      }).join('');
-      
-      let connectors = '';
-      for (let i = 0; i < line.stations.length - 1; i++) {
-        const isInRoute = routeStations.includes(line.stations[i].code) &&
-                          routeStations.includes(line.stations[i + 1].code);
-        let connectorColor = line.color;
-        if (isRouteMode && !isInRoute) {
-          connectorColor = '#FBF9F7';
-        }
-        
-        const leftPos = (i * 120) - (60 * line.stations.length) + 640;
-        connectors += `<div class="line-connector" style="left: ${leftPos}px; translate: 0px 25px; width: 108px; background: ${connectorColor}; color: ${connectorColor}"></div>`;
-      }
-      
-      let speakHtml = '';
-      if (showSpeak && speakStops.length >= 2) {
-        speakHtml = `
+            }).join('');
+
+            let connectors = '';
+            for (let i = 0; i < line.stations.length - 1; i++) {
+                const isInRoute = routeStations.includes(line.stations[i].code) &&
+                    routeStations.includes(line.stations[i + 1].code);
+                let connectorColor = line.color;
+                if (isRouteMode && !isInRoute) {
+                    connectorColor = '#FBF9F7';
+                }
+
+                const leftPos = (i * 120) - (60 * line.stations.length) + 640;
+                connectors += `<div class="line-connector" style="left: ${leftPos}px; translate: 0px 25px; width: 108px; background: ${connectorColor}; color: ${connectorColor}"></div>`;
+            }
+
+            let speakHtml = '';
+            if (showSpeak && speakStops.length >= 2) {
+                speakHtml = `
           <button class="speak-btn" data-line="${speakLineCode}" data-stops='${JSON.stringify(speakStops)}'>
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131Zm-80-29L280-360H120v-240h160l200-200v640Zm80-160v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320Zm-160-34v-252l-86 86H200v80h114l86 86ZM40-680v-240h240v80H120v160H40ZM680-40v-80h160v-160h80v240H680ZM300-480Z"/></svg>   
             Odtwórz zapowiedź
           </button>
         `;
-      }
-      
-      // na przyszlosc - zmiany trasy etc
-      let statusHtml = '';
-      const statusInfo = getLineStatusUI(line.status);
-      if (statusInfo) {
-          statusHtml = `<div class="status-badge ${statusInfo.className}">${statusInfo.text}</div>`;
-      }
+            }
 
-      const isSuspended = line.status === 16
-      const isSuspendedTech = line.status === 98;
-      const isChanged = line.status > 0 && line.status < 16;
+            // na przyszlosc - zmiany trasy etc
+            let statusHtml = '';
+            const statusInfo = getLineStatusUI(line.status);
+            if (statusInfo) {
+                statusHtml = `<div class="status-badge ${statusInfo.className}">${statusInfo.text}</div>`;
+            }
 
-      let badgeClass = "line-badge";
-      let badgeSub = "";
+            const isSuspended = line.status === 16
+            const isSuspendedTech = line.status === 98;
+            const isChanged = line.status > 0 && line.status < 16;
 
-      if (isSuspendedTech){
-        badgeClass += " is-suspended";
-        badgeSub = `<div class="line-badge-sub"><span>LINIA TECHNICZNA - ZAWIESZONA</span></div>`;
-      } else if (isSuspended) {
-        badgeClass += " is-suspended";
-        badgeSub = `<div class="line-badge-sub"><span>ZAWIESZONA</span></div>`;
-      } else if (isChanged) {
-        badgeClass += " is-suspended";
-        badgeSub = `<div class="line-badge-sub"><span>TRASA ZMIENIONA</span></div>`;
-      }
+            let badgeClass = "line-badge";
+            let badgeSub = "";
 
-      const lineBadgeHtml = `
+            if (isSuspendedTech) {
+                badgeClass += " is-suspended";
+                badgeSub = `<div class="line-badge-sub"><span>LINIA TECHNICZNA - ZAWIESZONA</span></div>`;
+            } else if (isSuspended) {
+                badgeClass += " is-suspended";
+                badgeSub = `<div class="line-badge-sub"><span>ZAWIESZONA</span></div>`;
+            } else if (isChanged) {
+                badgeClass += " is-suspended";
+                badgeSub = `<div class="line-badge-sub"><span>TRASA ZMIENIONA</span></div>`;
+            }
+
+            const lineBadgeHtml = `
         <div class="${badgeClass}" style="background-color: ${line.color}; color: ${line.textcolor};">
           <div class="line-code">${lineCode}</div>
           ${badgeSub}
         </div>
       `;
 
-      let contentHtml = '';
-      if (line.icon) {
-        contentHtml = `<img src="/logos/${line.icon}" alt="${line.name}" style="height: 1.4em; display: block;">`;
-      } else {
-        contentHtml = `<span>${line.name}</span>`;
-      }
+            let contentHtml = '';
+            if (line.icon) {
+                contentHtml = `<img src="/logos/${line.icon}" alt="${line.name}" style="height: 1.4em; display: block;">`;
+            } else {
+                contentHtml = `<span>${line.name}</span>`;
+            }
 
-      
-      let nameContentHtml = '';
-      if (line.icon) {
-        nameContentHtml = `
+
+            let nameContentHtml = '';
+            if (line.icon) {
+                nameContentHtml = `
             <img src="/logos/${line.icon}" 
                  alt="${line.name}"
                  style="height: 1.4em; display: block;">`;
-      } else {
-        nameContentHtml = `<span style="display: block;">${line.name}</span>`;
-      }
-      const lineNameHtml = `
+            } else {
+                nameContentHtml = `<span style="display: block;">${line.name}</span>`;
+            }
+            const lineNameHtml = `
         <div class="line-name" style="display: flex; align-items: center; gap: 8px;">
             ${nameContentHtml}
         </div>
       `;
 
-      return `
+            return `
         <div class="line-container">
           <div class="line-header">
             ${lineBadgeHtml}
@@ -637,273 +562,274 @@
           <div class="line-diagram">${connectors}${stationElements}</div>
         </div>
       `;
-    }
-
-    function showMapLine(lineCode) {
-      const resultsDiv = document.getElementById('results');
-      const line = lines[lineCode];
-      if (!line) {
-        resultsDiv.innerHTML = `<div class="error-message">Linia nie znaleziona</div>`;
-        return;
-      }
-      
-      let stops = line.stations.map(s => s.name);
-      
-      let html = `
-        ${renderLineDiagram(lineCode, null, line.stations.map(s=>s.code), false, null, true, false, true, stops, lineCode)}
-      `;
-      
-      resultsDiv.innerHTML = html;
-      preloadLineAudio(lineCode, stops); 
-    }
-
-    function setupMapMode() {
-      const lineSelector = document.getElementById('line-selector');
-      lineSelector.innerHTML = '<div class="map-instruction" style="width:100%;">Wybierz linię:</div>';
-      getSortedLineKeys().forEach(lineCode => {
-        const btn = document.createElement('button');
-        btn.className = 'line-btn';
-        btn.textContent = lineCode;
-
-        btn.style.cursor = 'pointer';
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.line-btn').forEach(b => {
-            b.classList.remove('active');
-            b.style.backgroundColor = '';
-            b.style.color = '';
-          });
-          btn.classList.add('active');
-          btn.style.backgroundColor = lines[lineCode].color;
-          btn.style.color = lines[lineCode].textcolor;
-          showMapLine(lineCode);
-        });
-        lineSelector.appendChild(btn);
-      });
-    }
-
-    document.addEventListener('click', function(e){
-      if (e.target.closest('.speak-btn')) {
-        const btn = e.target.closest('.speak-btn');
-        let lineCode = btn.getAttribute('data-line');
-        let stops = [];
-        try { stops = JSON.parse(btn.getAttribute('data-stops')); } catch {}
-        let sequence = buildAnnouncementSequence(lineCode, stops);
-        playAnnouncementMp3s(sequence);
-      }
-    });
-
-    const modeBtns = document.querySelectorAll('.mode-btn');
-    const stationInputGroup = document.getElementById('station-input');
-    const routeInputGroup = document.getElementById('route-input');
-    const mapInputGroup = document.getElementById('map-input');
-    const stationCodeInput = document.getElementById('station-code');
-    const startStationInput = document.getElementById('start-station');
-    const endStationInput = document.getElementById('end-station');
-
-    let currentMode = 'map';
-
-    // mapa
-    setupMapMode();
-
-    modeBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const mode = btn.dataset.mode;
-        currentMode = mode;
-        modeBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        if (mode === 'station') {
-          stationInputGroup.classList.add('active');
-          routeInputGroup.classList.remove('active');
-          mapInputGroup.classList.remove('active');
-          stationCodeInput.focus();
-        } else if (mode === 'route') {
-          routeInputGroup.classList.add('active');
-          stationInputGroup.classList.remove('active');
-          mapInputGroup.classList.remove('active');
-          startStationInput.focus();
-        } else if (mode === 'map') {
-          mapInputGroup.classList.add('active');
-          stationInputGroup.classList.remove('active');
-          routeInputGroup.classList.remove('active');
-          setupMapMode();
         }
-        document.getElementById('results').innerHTML = '';
-      });
-    });
 
-    stationCodeInput.addEventListener('input', (e) => {
-      const value = e.target.value.trim();
-      if (value.length >= 2) {
-        showStationInfo(value);
-      } else {
-        document.getElementById('results').innerHTML = '';
-      }
-    });
+        function showMapLine(lineCode) {
+            const resultsDiv = document.getElementById('results');
+            const line = lines[lineCode];
+            if (!line) {
+                resultsDiv.innerHTML = `<div class="error-message">Linia nie znaleziona</div>`;
+                return;
+            }
 
-    function updateRoute() {
-      const start = startStationInput.value.trim();
-      const end = endStationInput.value.trim();
-      if (start.length >= 2 && end.length >= 2) {
-        showRoute(start, end);
-      }
-    }
+            let stops = line.stations.map(s => s.name);
 
-    startStationInput.addEventListener('input', updateRoute);
-    endStationInput.addEventListener('input', updateRoute);
+            let html = `
+        ${renderLineDiagram(lineCode, null, line.stations.map(s => s.code), false, null, true, false, true, stops, lineCode)}
+      `;
 
-    const stationAutocomplete = document.getElementById('station-autocomplete');
-    setupAutocomplete(
-      stationCodeInput,
-      stationAutocomplete,
-      code => {
-        stationCodeInput.value = getStationName(code);
-        showStationInfo(code);
-      }
-    );
+            resultsDiv.innerHTML = html;
+            preloadLineAudio(lineCode, stops);
+        }
 
-    const startAutocomplete = document.getElementById('start-autocomplete');
-    setupAutocomplete(
-      startStationInput,
-      startAutocomplete,
-      code => {
-        startStationInput.value = getStationName(code);
-        updateRoute();
-      }
-    );
+        function setupMapMode() {
+            const lineSelector = document.getElementById('line-selector');
+            lineSelector.innerHTML = '<div class="map-instruction" style="width:100%;">Wybierz linię:</div>';
+            getSortedLineKeys().forEach(lineCode => {
+                const btn = document.createElement('button');
+                btn.className = 'line-btn';
+                btn.textContent = lineCode;
 
-    const endAutocomplete = document.getElementById('end-autocomplete');
-    setupAutocomplete(
-      endStationInput,
-      endAutocomplete,
-      code => {
-        endStationInput.value = getStationName(code);
-        updateRoute();
-      }
-    );
+                btn.style.cursor = 'pointer';
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.line-btn').forEach(b => {
+                        b.classList.remove('active');
+                        b.style.backgroundColor = '';
+                        b.style.color = '';
+                    });
+                    btn.classList.add('active');
+                    btn.style.backgroundColor = lines[lineCode].color;
+                    btn.style.color = lines[lineCode].textcolor;
+                    showMapLine(lineCode);
+                });
+                lineSelector.appendChild(btn);
+            });
+        }
 
-    function setupAutocomplete(inputElem, listElem, assignValue) {
-      inputElem.addEventListener('input', function(e) {
-        const val = e.target.value.trim().toLowerCase();
-        listElem.innerHTML = '';
-        if (!val || val.length < 1) return;
-        const matches = allStations.filter(station => 
-          station.name.toLowerCase().includes(val)
-        ).slice(0, 8);
-        matches.forEach(station => {
-          const item = document.createElement('div');
-          item.className = 'autocomplete-item';
-          item.textContent = station.name;
-          item.addEventListener('mousedown', function() {
-            assignValue(station.code);
-            listElem.innerHTML = '';
-          });
-          listElem.appendChild(item);
+        document.addEventListener('click', function (e) {
+            if (e.target.closest('.speak-btn')) {
+                const btn = e.target.closest('.speak-btn');
+                let lineCode = btn.getAttribute('data-line');
+                let stops = [];
+                try { stops = JSON.parse(btn.getAttribute('data-stops')); } catch { }
+                let sequence = buildAnnouncementSequence(lineCode, stops);
+                playAnnouncementMp3s(sequence);
+            }
         });
-      });
-      inputElem.addEventListener('blur', function() {
-        setTimeout(() => { listElem.innerHTML = ''; }, 100);
-      });
-    }
 
-    function showStationInfo(input) {
-      const resultsDiv = document.getElementById('results');
-      const code = resolveStationCode(input);
-      if (!code) {
-        resultsDiv.innerHTML = `<div class="error-message">Stacja nieznaleziona</div>`;
-        return;
-      }
+        const modeBtns = document.querySelectorAll('.mode-btn');
+        const stationInputGroup = document.getElementById('station-input');
+        const routeInputGroup = document.getElementById('route-input');
+        const mapInputGroup = document.getElementById('map-input');
+        const stationCodeInput = document.getElementById('station-code');
+        const startStationInput = document.getElementById('start-station');
+        const endStationInput = document.getElementById('end-station');
 
-      const linesHere = getLinesAtStation(code);
-      if (!linesHere.length) {
-        resultsDiv.innerHTML = `<div class="error-message">Stacja nieznaleziona</div>`;
-        return;
-      }
+        let currentMode = 'map';
 
-      const stationName = getStationName(code);
-      let html = `<div class="result-header">${stationName}</div>`;
+        // mapa
+        setupMapMode();
 
-      linesHere.forEach(lineCode => {
-        const line = lines[lineCode];
-        const allCodes = line.stations.map(s => s.code);
-        html += renderLineDiagram(
-          lineCode,
-          code,
-          allCodes,
-          false,
-          null,
-          true,
-          true,
-          true,
-          false,
-          [],
-          null
+        modeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const mode = btn.dataset.mode;
+                currentMode = mode;
+                modeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                if (mode === 'station') {
+                    stationInputGroup.classList.add('active');
+                    routeInputGroup.classList.remove('active');
+                    mapInputGroup.classList.remove('active');
+                    stationCodeInput.focus();
+                } else if (mode === 'route') {
+                    routeInputGroup.classList.add('active');
+                    stationInputGroup.classList.remove('active');
+                    mapInputGroup.classList.remove('active');
+                    startStationInput.focus();
+                } else if (mode === 'map') {
+                    mapInputGroup.classList.add('active');
+                    stationInputGroup.classList.remove('active');
+                    routeInputGroup.classList.remove('active');
+                    setupMapMode();
+                }
+                document.getElementById('results').innerHTML = '';
+            });
+        });
+
+        stationCodeInput.addEventListener('input', (e) => {
+            const value = e.target.value.trim();
+            if (value.length >= 2) {
+                showStationInfo(value);
+            } else {
+                document.getElementById('results').innerHTML = '';
+            }
+        });
+
+        function updateRoute() {
+            const start = startStationInput.value.trim();
+            const end = endStationInput.value.trim();
+            if (start.length >= 2 && end.length >= 2) {
+                showRoute(start, end);
+            }
+        }
+
+        startStationInput.addEventListener('input', updateRoute);
+        endStationInput.addEventListener('input', updateRoute);
+
+        const stationAutocomplete = document.getElementById('station-autocomplete');
+        setupAutocomplete(
+            stationCodeInput,
+            stationAutocomplete,
+            code => {
+                stationCodeInput.value = getStationName(code);
+                showStationInfo(code);
+            }
         );
-      });
 
-      resultsDiv.innerHTML = html;
-    }
+        const startAutocomplete = document.getElementById('start-autocomplete');
+        setupAutocomplete(
+            startStationInput,
+            startAutocomplete,
+            code => {
+                startStationInput.value = getStationName(code);
+                updateRoute();
+            }
+        );
 
-    function showRoute(startInput, endInput) {
-      const resultsDiv = document.getElementById('results');
+        const endAutocomplete = document.getElementById('end-autocomplete');
+        setupAutocomplete(
+            endStationInput,
+            endAutocomplete,
+            code => {
+                endStationInput.value = getStationName(code);
+                updateRoute();
+            }
+        );
 
-      const startCode = resolveStationCode(startInput);
-      const endCode = resolveStationCode(endInput);
+        function setupAutocomplete(inputElem, listElem, assignValue) {
+            inputElem.addEventListener('input', function (e) {
+                const val = e.target.value.trim().toLowerCase();
+                listElem.innerHTML = '';
+                if (!val || val.length < 1) return;
+                const matches = allStations.filter(station =>
+                    station.name.toLowerCase().includes(val)
+                ).slice(0, 8);
+                matches.forEach(station => {
+                    const item = document.createElement('div');
+                    item.className = 'autocomplete-item';
+                    item.textContent = station.name;
+                    item.addEventListener('mousedown', function () {
+                        assignValue(station.code);
+                        listElem.innerHTML = '';
+                    });
+                    listElem.appendChild(item);
+                });
+            });
+            inputElem.addEventListener('blur', function () {
+                setTimeout(() => { listElem.innerHTML = ''; }, 100);
+            });
+        }
 
-      if (!startCode || !endCode) {
-        resultsDiv.innerHTML = `<div class="error-message">Nie znaleziono stacji początkowej lub końcowej</div>`;
-        return;
-      }
+        function showStationInfo(input) {
+            const resultsDiv = document.getElementById('results');
+            const code = resolveStationCode(input);
+            if (!code) {
+                resultsDiv.innerHTML = `<div class="error-message">Stacja nieznaleziona</div>`;
+                return;
+            }
 
-      const routeCodes = findRoute(startCode, endCode);
-      if (!routeCodes || routeCodes.length === 0) {
-        resultsDiv.innerHTML = `<div class="error-message">Brak połączenia między stacjami</div>`;
-        return;
-      }
+            const linesHere = getLinesAtStation(code);
+            if (!linesHere.length) {
+                resultsDiv.innerHTML = `<div class="error-message">Stacja nieznaleziona</div>`;
+                return;
+            }
 
-      const routeNames = routeCodes.map(getStationName);
-      const segments = getRouteLineSegments(routeCodes);
+            const stationName = getStationName(code);
+            let html = `<div class="result-header">${stationName}</div>`;
 
-      let html = `<div class="result-header">Trasa: ${getStationName(startCode)} → ${getStationName(endCode)}</div>`;
-      html += `
+            linesHere.forEach(lineCode => {
+                const line = lines[lineCode];
+                const allCodes = line.stations.map(s => s.code);
+                html += renderLineDiagram(
+                    lineCode,
+                    code,
+                    allCodes,
+                    false,
+                    null,
+                    true,
+                    true,
+                    true,
+                    false,
+                    [],
+                    null
+                );
+            });
+
+            resultsDiv.innerHTML = html;
+        }
+
+        function showRoute(startInput, endInput) {
+            const resultsDiv = document.getElementById('results');
+
+            const startCode = resolveStationCode(startInput);
+            const endCode = resolveStationCode(endInput);
+
+            if (!startCode || !endCode) {
+                resultsDiv.innerHTML = `<div class="error-message">Nie znaleziono stacji początkowej lub końcowej</div>`;
+                return;
+            }
+
+            const routeCodes = findRoute(startCode, endCode);
+            if (!routeCodes || routeCodes.length === 0) {
+                resultsDiv.innerHTML = `<div class="error-message">Brak połączenia między stacjami</div>`;
+                return;
+            }
+
+            const routeNames = routeCodes.map(getStationName);
+            const segments = getRouteLineSegments(routeCodes);
+
+            let html = `<div class="result-header">Trasa: ${getStationName(startCode)} → ${getStationName(endCode)}</div>`;
+            html += `
         <div class="route-path">
           <div class="route-steps">
             ${routeNames.map((name, i) => {
-              if (i === routeNames.length - 1) {
-                return `<span class="route-station">${name}</span>`;
-              }
-              return `<span class="route-station">${name}</span><span class="route-arrow" style="color: #fbf9f7;">→</span>`;
+                if (i === routeNames.length - 1) {
+                    return `<span class="route-station">${name}</span>`;
+                }
+                return `<span class="route-station">${name}</span><span class="route-arrow" style="color: #fbf9f7;">→</span>`;
             }).join('')}
           </div>
         </div>
       `;
 
-      segments.forEach(seg => {
-        const line = lines[seg.line];
-        const allCodes = line.stations.map(s => s.code);
+            segments.forEach(seg => {
+                const line = lines[seg.line];
+                const allCodes = line.stations.map(s => s.code);
 
-        const segIndexFrom = routeCodes.indexOf(seg.from);
-        const segIndexTo = routeCodes.indexOf(seg.to);
-        const segCodes = routeCodes.slice(
-          Math.min(segIndexFrom, segIndexTo),
-          Math.max(segIndexFrom, segIndexTo) + 1
-        );
+                const segIndexFrom = routeCodes.indexOf(seg.from);
+                const segIndexTo = routeCodes.indexOf(seg.to);
+                const segCodes = routeCodes.slice(
+                    Math.min(segIndexFrom, segIndexTo),
+                    Math.max(segIndexFrom, segIndexTo) + 1
+                );
 
-        html += renderLineDiagram(
-          seg.line,
-          null,
-          segCodes,
-          true,
-          seg.from,
-          false,
-          false,
-          false,
-          segCodes.map(getStationName),
-          seg.line
-        );
-      });
+                html += renderLineDiagram(
+                    seg.line,
+                    null,
+                    segCodes,
+                    true,
+                    seg.from,
+                    false,
+                    false,
+                    false,
+                    segCodes.map(getStationName),
+                    seg.line
+                );
+            });
 
-      resultsDiv.innerHTML = html;
-    }
-  </script>
+            resultsDiv.innerHTML = html;
+        }
+    </script>
 </body>
+
 </html>
