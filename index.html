@@ -472,14 +472,12 @@
             if (isStartStation) classes.push("start-station");
             
             let titleAttr = "";
-            if (isRouteMode) {
-              const coords = getStationCoords(station.code);
-              if (coords) {
-                const { stationX, stationY, stationZ } = coords;
-                titleAttr =
-                  ` title="X: ${stationX.toFixed(0)}, ` +
-                  `Y: ${stationY.toFixed(0)}, Z: ${stationZ.toFixed(0)}"`;
-              }
+            const coords = getStationCoords(station.code);
+            if (coords) {
+              const { stationX, stationY, stationZ } = coords;
+              titleAttr =
+                ` title="X: ${stationX.toFixed(0)}, ` +
+                `Y: ${stationY.toFixed(0)}, Z: ${stationZ.toFixed(0)}"`;
             }
             
             const transferLines = getLinesAtStation(station.code) || [];
