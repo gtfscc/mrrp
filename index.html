@@ -80,7 +80,7 @@
                 color: '#49986D',
                 textcolor: '#FFFFFF',
                 sortOrder: 99,
-                status: 16,
+                status: 8,
                 stations: [
                     { code: 'PT', name: 'Park Technologiczny', transferInfo: 'tram' },
                     { code: 'KS', name: 'Kolonia Staszica  (Spawn)' }
@@ -117,7 +117,7 @@
                 color: '#FFC300',
                 textcolor: '#2E2E2E',
                 sortOrder: 50,
-                status: 16,
+                status: 8,
                 stations: [
                     { code: 'VP', name: 'Investpark Podgórna', transferInfo: 'tram' },
                     { code: 'SE', name: 'Strefa Ekonomiczna', transferInfo: 'tram' }
@@ -428,7 +428,7 @@
             const s = status & 15;
 
             switch (s) {
-                case 8: return { text: "AWARIA NA LINII", className: "badge-red" };
+                case 8: return { text: "LINIA NIE KURSUJE", className: "badge-red" };
                 case 4: return { text: "NOWA TRASA", className: "badge-blue" };
                 case 12: return { text: "AWARIA NA LINII", className: "badge-yellow" };
                 case 2: return { text: "TRASA ZMIENIONA", className: "badge-yellow" };
@@ -528,7 +528,7 @@
                 statusHtml = `<div class="status-badge ${statusInfo.className}">${statusInfo.text}</div>`;
             }
 
-            const isSuspended = line.status === 16
+            const isSuspended = line.status === 8;
             const isSuspendedTech = line.status === 98;
             const isChanged = line.status > 0 && line.status < 16;
 
