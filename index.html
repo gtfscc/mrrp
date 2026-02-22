@@ -317,7 +317,7 @@
           for (const line of Object.values(lines)) {
             const station = line.stations.find(s => s.code === code);
             if (station && station.stationX != null && station.stationY != null && station.stationZ != null) {
-              return { stationX: station.stationX, stationY: station.stationY, stationY: station.stationZ };
+              return { stationX: station.stationX, stationY: station.stationY, stationZ: station.stationZ };
             }
           }
           return null;
