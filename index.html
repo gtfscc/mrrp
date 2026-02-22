@@ -459,53 +459,64 @@
 
         function renderLineDiagram(lineCode, highlightStation = null, routeStations = [], isRouteMode = false, routeStart = null, isMapMode = false, isStationMode = false, showSpeak = false, speakStops = [], speakLineCode = null) {
             const line = lines[lineCode];
-            if (!line) return '';
+            if (!line) return;
+            
             const stationElements = line.stations.map((station, index) => {
-                const isHighlight = station.code === highlightStation;
-                const isInRoute = routeStations.includes(station.code);
-                const isStartStation = station.code === routeStart && isRouteMode;
-                const classes = ['station-item'];
-                if (isHighlight) classes.push('highlight');
-                if (isInRoute && !isMapMode) classes.push('in-route');
-                if (isStartStation) {
-                    classes.push('start-station');
-                    const stationIndex = routeStations.indexOf(station.code);
-                    const nextStation = routeStations[stationIndex + 1];
-                    if (nextStation) {
-                        const currentIdx = line.stations.findIndex(s => s.code === station.code);
-                        const nextIdx = line.stations.findIndex(s => s.code === nextStation);
-                        if (nextIdx < currentIdx) classes.push('direction-left');
-                    }
-                }
-
-                // kierunek pod nowe style
-                if (station.oneWay === 'P') {
-                    classes.push('arrow-right');
-                } else if (station.oneWay === 'T') {
-                    classes.push('arrow-left');
-                }
-
-                let markerColor = line.color;
-                if (isRouteMode && !isInRoute && !isHighlight) {
-                    markerColor = '#FBF9F7';
-                }
-                const transferLines = getLinesAtStation(station.code);
-                const otherLines = transferLines
-                    .filter(l => l !== lineCode)
-                    .sort((a, b) => (lines[a].sortOrder ?? 9999) - (lines[b].sortOrder ?? 9999));
-                let transfersHtml = '';
-                if (otherLines.length > 0 && (isMapMode || isStationMode)) {
-                    transfersHtml = `<div class="station-transfers">
-            ${otherLines.map(l => `<div class="transfer-icon" style="background-color: ${lines[l].color}; color: ${lines[l].textcolor};">${l}</div>`).join('')}
-          </div>`;
-                }
-                return `
-          <div class="${classes.join(' ')}" style="color: ${markerColor}">
-            <div class="station-marker"></div>
-            <div class="station-name">${formatStationName(station.name)}</div>
-            ${transfersHtml}
-          </div>
-        `;
+            const isHighlight = station.code === highlightStation;
+            const isInRoute = routeStations.includes(station.code);
+            const isStartStation = station.code === routeStart && isRouteMode;
+            
+            const classes = ["station-item"];
+            if (isHighlight) classes.push("highlight");
+            if (isInRoute && !isMapMode) classes.push("in-route");
+            if (isStartStation) classes.push("start-station");
+            
+            let titleAttr = "";
+            if (isRouteMode) {
+              const coords = getStationCoords(station.code);
+              if (coords) {
+                const { stationX, stationY, stationZ } = coords;
+                titleAttr =
+                  ` title="X: ${stationX.toFixed(0)}, ` +
+                  `Y: ${stationY.toFixed(0)}, Z: ${stationZ.toFixed(0)}"`;
+              }
+            }
+            
+            const transferLines = getLinesAtStation(station.code) || [];
+            const otherLines = transferLines
+              .filter(l => l !== lineCode)
+              .sort(
+                (a, b) =>
+                  (lines[a].sortOrder ?? 9999) - (lines[b].sortOrder ?? 9999)
+              );
+            
+            let transfersHtml = "";
+            if (otherLines.length && !isMapMode && !isStationMode) {
+              transfersHtml =
+                `<div class="station-transfers">` +
+                otherLines
+                  .map(
+                    l =>
+                      `<div class="transfer-icon" ` +
+                      `style="background-color: ${lines[l].color}; color: ${lines[l].textcolor}">` +
+                      `${l}</div>`
+                  )
+                  .join("") +
+                `</div>`;
+            }
+            
+            let markerColor = line.color;
+            if (isRouteMode && !isInRoute && !isHighlight) markerColor = "FBF9F7";
+            
+            return `
+              <div class="${classes.join(" ")}" style="color: ${markerColor}">
+                <div class="station-marker"></div>
+                <div class="station-name"${titleAttr}>
+                  ${formatStationName(station.name)}
+                </div>
+                ${transfersHtml}
+              </div>
+            `;
             }).join('');
 
             let connectors = '';
