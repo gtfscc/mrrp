@@ -126,8 +126,8 @@
             },
             M2: {
                 name: 'Linia M2',
-                icon: 'lightrail.svg',
-                color: '#FFC300',
+                icon: 'metro.svg',
+                color: '#F23532',
                 textcolor: '#FBF9F7',
                 sortOrder: 0,
                 status: 0,
@@ -264,7 +264,7 @@
             const specialFiles = getSpecialAnnouncementFiles(status);
             files.push(...specialFiles);
 
-            for (let i = 0; i < stops.length; i++) {
+            for (let i = 0; i < stops.length - 1; i++) {
                 files.push(stopMp3(stops[i]));
                 
                 if (lineData && lineData.stations) {
