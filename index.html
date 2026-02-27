@@ -79,7 +79,7 @@
                 icon: 'regio.svg',
                 color: '#49986D',
                 textcolor: '#FFFFFF',
-                sortOrder: 99,
+                sortOrder: 40,
                 status: 0,
                 stations: [
                     { code: 'PT', name: 'Park Technologiczny', transferInfo: 'tram', stationX: -338, stationY: 101, stationZ: -52 },
@@ -91,7 +91,7 @@
                 icon: 'lightrail.svg',
                 color: '#FF9327',
                 textcolor: '#2E2E2E',
-                sortOrder: 30,
+                sortOrder: 10,
                 status: 0,
                 stations: [
                     { code: 'TE', name: 'Technoszczot', stationX: -313, stationY: 151, stationZ: -508 },
@@ -103,13 +103,13 @@
                 icon: 'lightrail.svg',
                 color: '#FFC300',
                 textcolor: '#2E2E2E',
-                sortOrder: 40,
+                sortOrder: 20,
                 status: 0,
                 stations: [
                     { code: 'VA', name: 'Investpark Akacjowa', transferInfo: 'tram', stationX: -237, stationY: 101, stationZ: -64 },
                     { code: 'PT', name: 'Park Technologiczny', transferInfo: 'regio', stationX: -338, stationY: 101, stationZ: -52 },
                     { code: 'NA', name: 'Najdziszów  (Wieś)', stationX: -347, stationY: 87, stationZ: 95 },
-                    { code: 'CP', name: 'Imielin CP', stationX: -335, stationY: 69, stationZ: 450 }
+                    { code: 'CP', name: 'Imielin CP', transferInfo: 'regio', stationX: -335, stationY: 69, stationZ: 450 }
                 ]
             },
             T5: {
@@ -117,11 +117,23 @@
                 icon: 'lightrail.svg',
                 color: '#FFC300',
                 textcolor: '#2E2E2E',
-                sortOrder: 50,
+                sortOrder: 30,
                 status: 0,
                 stations: [
                     { code: 'VP', name: 'Investpark Podgórna', transferInfo: 'tram', stationX: -243, stationY: 83, stationZ: -38 },
                     { code: 'SE', name: 'Strefa Ekonomiczna', transferInfo: 'tram', stationX: -294, stationY: 113, stationZ: -486 }
+                ]
+            },
+            M2: {
+                name: 'Linia M2',
+                icon: 'lightrail.svg',
+                color: '#FFC300',
+                textcolor: '#2E2E2E',
+                sortOrder: 0,
+                status: 0,
+                stations: [
+                    { code: 'IR', name: 'Imielin Rynek', stationX: -181, stationY: 64, stationZ: 481 },
+                    { code: 'CP', name: 'Imielin CP', transferInfo: 'tram', stationX: -335, stationY: 69, stationZ: 450 }
                 ]
             }
         };
